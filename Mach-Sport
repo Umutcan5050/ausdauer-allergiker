@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mach Sport</title>
+<style>
+  html,body{height:100%;margin:0;background:#000;color:#fff;font-family:system-ui,Arial}
+  .c{height:100%;display:grid;place-items:center;text-align:center;padding:24px}
+  h1{margin:0;font-size:clamp(28px,6vw,56px);letter-spacing:-.5px}
+  p{margin:12px 0 0;color:#aaa;max-width:55ch}
+  .box{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  button{background:#111;border:1px solid #333;color:#fff;padding:10px 12px;border-radius:12px;cursor:pointer}
+  button:hover{background:#181818}
+  .bar{width:min(520px,90vw);height:10px;border:1px solid #333;border-radius:999px;overflow:hidden;margin:18px auto 0}
+  .fill{height:100%;width:12%;background:#4cffc7;transition:width .25s}
+  .msg{margin-top:10px;color:#bbb;font-size:14px}
+</style>
+</head>
+<body>
+<div class="c">
+  <div>
+    <h1>Mach Sport, du <span style="color:#8a7cff">Ausdauer Allergiker</span>.</h1>
+    <p>Deine Kondition ist so selten wie ein Einhorn — man hört davon, aber gesehen hat’s keiner.</p>
+
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="msg" id="msg">Ausdauer-Level: 12% (Stand: “gleich geht’s los”)</div>
+
+    <div class="box">
+      <button id="btn">+1% Ausdauer (theoretisch)</button>
+      <button id="exc">Ausrede drücken</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let v=12;
+  const fill=document.getElementById('fill');
+  const msg=document.getElementById('msg');
+  const excuses=[
+    "Heute ist Regeneration. Für die Seele.",
+    "Ich muss erst den perfekten Song finden.",
+    "Sport? Ja — morgen, safe.",
+    "Meine Ausdauer lädt gerade… (1%)."
+  ];
+  document.getElementById('btn').onclick=()=>{
+    v=Math.min(100,v+1);
+    fill.style.width=v+"%";
+    msg.textContent=`Ausdauer-Level: ${v}% (Fortschritt im Schneckentempo)`;
+  };
+  document.getElementById('exc').onclick=()=>{
+    msg.textContent="Ausrede: "+excuses[Math.floor(Math.random()*excuses.length)];
+  };
+</script>
+</body>
+</html>
